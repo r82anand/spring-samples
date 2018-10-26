@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+<title>Boot Client Application</title>
+<style>
+h1.neon {
+	color: #0000FF;
+	text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF, 0 0 20px #A5F1FF, 0 0
+		30px #A5F1FF, 0 0 40px #A5F1FF;
+	text-align: center;
+}
+
+hr {
+	display: block;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-left: auto;
+	margin-right: auto;
+	border-style: inset;
+	border-width: 1px;
+	border-color: rgb(30, 144, 255);
+}
+
+hr.style-two {
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0),
+		rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+hr.style-three {
+	height: 15px;
+	border: 0;
+	box-shadow: inset 0 12px 12px -12px rgb(30, 144, 255);
+}
+
+span#footertext {
+	color: rgb(153, 153, 153);
+}
+</style>
+</head>
+<header>
+	<hr class="style-three"></hr>
+	<div>
+		<h1 class="neon">File Upload Service</h1>
+	</div>
+	<hr></hr>
+</header>
+<body>
+<h1>Choose file to upload: </h1>
+<script type="text/javascript">
+function validate_fileupload(fileName)
+{
+	var allowed_extensions = new Array("jpg","png","gif");
+	var file_extension = fileName.split('.').pop().toLowerCase();
+	//<![CDATA[
+	for(var i = 0; i <= allowed_extensions.length; i++)
+	{
+		if(allowed_extensions[i]==file_extension)
+		{
+			return true;
+		}
+	}
+	//]]>
+	return false;
+}
+</script>
+<form method="POST" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="file" accept="text/plain,text/html,text/rtf,text/xml, text/richtext, application/pdf, application/msword,application/x-iwork-pages-sffpages,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/><br/><br/>
+    <input type="submit" value="Submit" onclick="validateExtension"/>
+    <input type="reset" value="Clear"/>
+</form>
+</body>
+<footer>
+	<hr style=""></hr>
+	<span id="footertext">&#169; 2018. All rights reserved</span>
+</footer>
+</html>
