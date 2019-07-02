@@ -39,6 +39,10 @@ public class Chapter implements Serializable {
 	@JoinColumn(name = "TOPIC_ID")
 	@JsonIgnore
 	private Topic topic;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "content_id")
+	private Contents contents;
 
 	public Long getId() {
 		return id;
@@ -78,6 +82,14 @@ public class Chapter implements Serializable {
 
 	public void setTopic(Topic topic) {
 		this.topic = topic;
+	}
+	
+	public Contents getContents() {
+		return contents;
+	}
+
+	public void setContents(Contents contents) {
+		this.contents = contents;
 	}
 
 	@Override

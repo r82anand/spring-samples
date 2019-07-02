@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sivadas.anand.dto.ChapterDTO;
+import com.sivadas.anand.dto.ContentsDTO;
 import com.sivadas.anand.entity.Chapter;
+import com.sivadas.anand.entity.Contents;
 import com.sivadas.anand.entity.repository.ChapterRepository;
 
 @Service
@@ -42,6 +44,10 @@ public class ChapterService {
 		chapters.forEach(element -> {
 			ChapterDTO chapterDTO = new ChapterDTO();
 			mapper.map(element, chapterDTO);
+			ContentsDTO contentsDTO = new ContentsDTO();
+			Contents contents = element.getContents();
+			mapper.map(contents, contentsDTO);
+			chapterDTO.setContents(contentsDTO);
 			chapterList.add(chapterDTO);
 		});
 		

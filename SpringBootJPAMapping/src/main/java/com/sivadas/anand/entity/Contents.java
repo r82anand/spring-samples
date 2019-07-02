@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.sql.Clob;
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity(name = "Contents")
@@ -18,33 +21,22 @@ public class Contents implements Serializable {
 	@Id
     @GeneratedValue
 	private Long id;
-	@Column(name = "ARTICLE_TYPE")
-	private String articleType;
-	@Column(name = "ARTICLE_ID")
-	private Long articleId;
 	@Column(name = "TEXT")
 	private Clob content;
 	@Column(name = "CREATED_DATE")
 	private Timestamp createdDate;
 	@Column(name = "CREATED_USER")
 	private Long createdBy;
+	
+	@OneToOne(mappedBy = "contents", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
+	private Chapter chapter;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getArticleType() {
-		return articleType;
-	}
-	public void setArticleType(String articleType) {
-		this.articleType = articleType;
-	}
-	public Long getArticleId() {
-		return articleId;
-	}
-	public void setArticleId(Long articleId) {
-		this.articleId = articleId;
 	}
 	public Clob getContent() {
 		return content;
@@ -65,9 +57,23 @@ public class Contents implements Serializable {
 		this.createdBy = createdBy;
 	}
 	
+	public Chapter getChapter() {
+		return chapter;
+	}
+	public void setChapter(Chapter chapter) {
+		if (chapter == null) {
+            if (this.chapter != null) {
+                this.chapter.setContents(null);
+            }
+        }
+        else {
+        	chapter.setContents(this);
+        }
+        this.chapter = chapter;
+	}
 	@Override
 	public String toString() {
-		return "Contents [id=" + id + ", articleType=" + articleType + ", articleId=" + articleId + ", content="
+		return "Contents [id=" + id + ", content="
 				+ content + ", createdDate=" + createdDate + ", createdBy=" + createdBy + "]";
 	}
 }
