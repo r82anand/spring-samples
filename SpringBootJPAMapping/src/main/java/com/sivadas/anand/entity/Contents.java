@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,7 +23,8 @@ public class Contents implements Serializable {
     @GeneratedValue
 	private Long id;
 	@Column(name = "TEXT")
-	private Clob content;
+	@Lob
+	private String content;
 	@Column(name = "CREATED_DATE")
 	private Timestamp createdDate;
 	@Column(name = "CREATED_USER")
@@ -38,10 +40,10 @@ public class Contents implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Clob getContent() {
+	public String getContent() {
 		return content;
 	}
-	public void setContent(Clob content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 	public Timestamp getCreatedDate() {
