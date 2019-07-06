@@ -1,7 +1,6 @@
 package com.sivadas.anand.entity;
 
 import java.io.Serializable;
-import java.sql.Clob;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;

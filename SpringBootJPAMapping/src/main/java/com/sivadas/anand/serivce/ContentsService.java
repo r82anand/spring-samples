@@ -3,7 +3,6 @@ package com.sivadas.anand.serivce;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.sivadas.anand.dto.ContentsDTO;
 import com.sivadas.anand.entity.Contents;
 import com.sivadas.anand.entity.repository.ContentsRepository;
+import com.sivadas.anand.mapper.ContentsMapper;
 
 @Service
 public class ContentsService {
@@ -22,7 +22,7 @@ public class ContentsService {
 	private ContentsRepository repository;
 	
 	@Autowired
-	private DozerBeanMapper mapper;
+	private ContentsMapper mapper;
 	
 	public List<ContentsDTO> getAllContents() {
 		
@@ -33,19 +33,7 @@ public class ContentsService {
 			LOGGER.info("Contents = {}", element);
 		});
 		
-		return transformContensts(contentsList);
+		return mapper.contentsListToContenstDTOList(contentsList);
 	}
 
-	private List<ContentsDTO> transformContensts(List<Contents> contentsList) {
-
-		List<ContentsDTO> allContents = new ArrayList<>();
-		contentsList.forEach(element -> {
-			ContentsDTO contentsDTO = new ContentsDTO();
-			mapper.map(element, contentsDTO);
-			allContents.add(contentsDTO);
-		});
-		
-		return allContents;
-	}
-	
 }
