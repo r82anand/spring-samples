@@ -14,7 +14,7 @@
 	<mapping>
 		<class-a>com.sivadas.anand.entity.Contents</class-a>
 		<class-b>com.sivadas.anand.dto.ContentsDTO</class-b>
-		<field custom-converter="com.sivadas.anand.cofig.DozerCustomClobConverter">
+		<field custom-converter="com.sivadas.anand.util.DozerCustomClobConverter">
 			<a>content</a>
 			<b>content</b>
 		</field>

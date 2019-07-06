@@ -1,4 +1,4 @@
-package com.sivadas.anand.cofig;
+package com.sivadas.anand.util;
 
 import java.io.BufferedReader;
 import java.io.Reader;

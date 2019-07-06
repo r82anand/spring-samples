@@ -1,4 +1,4 @@
-package com.sivadas.anand.cofig;
+package com.sivadas.anand.config;
 
 import java.util.Arrays;
 
