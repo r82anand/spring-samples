@@ -15,4 +15,9 @@ public interface ContentsMapper {
 	ContentsDTO contentsToContenstDTO(Contents entity);
 
 	List<ContentsDTO> contentsListToContenstDTOList (List<Contents> entityList);
+	
+	Contents contentsDTOToContents(ContentsDTO dto);
+	
+	List<Contents> contenstDTOListToContentsList (List<ContentsDTO> dtoList);
+
 }

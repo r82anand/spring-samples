@@ -2,6 +2,7 @@ package com.sivadas.anand.serivce;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,25 +16,44 @@ import com.sivadas.anand.mapper.ContentsMapper;
 
 @Service
 public class ContentsService {
-	
+
 	protected final static Logger LOGGER = LoggerFactory.getLogger(ContentsService.class);
 
 	@Autowired
 	private ContentsRepository repository;
-	
+
 	@Autowired
 	private ContentsMapper mapper;
-	
+
 	public List<ContentsDTO> getAllContents() {
-		
+
 		List<Contents> contentsList = new ArrayList<>();
 		Iterable<Contents> results = repository.findAll();
-		results.forEach(contentsList :: add);
+		results.forEach(contentsList::add);
 		contentsList.forEach(element -> {
 			LOGGER.info("Contents = {}", element);
 		});
-		
+
 		return mapper.contentsListToContenstDTOList(contentsList);
+	}
+
+	public ContentsDTO getContentById(Long id) {
+
+		ContentsDTO contentsDTO = new ContentsDTO();
+		Optional<Contents> result = repository.findById(id);
+		if (result.isPresent()) {
+			contentsDTO = mapper.contentsToContenstDTO(result.get());
+		}
+
+		return contentsDTO;
+	}
+
+	public ContentsDTO saveContent(ContentsDTO content) {
+
+		Contents entity = mapper.contentsDTOToContents(content);
+		Contents contents = repository.save(entity);
+		
+		return mapper.contentsToContenstDTO(contents);
 	}
 
 }
