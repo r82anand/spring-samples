@@ -72,6 +72,7 @@ public class Contents implements Serializable {
         }
         this.chapter = chapter;
 	}
+
 	@Override
 	public String toString() {
 		return "Contents [id=" + id + ", content="

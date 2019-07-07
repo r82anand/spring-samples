@@ -2,7 +2,10 @@ package com.sivadas.anand.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -42,6 +46,13 @@ public class Chapter implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "content_id")
 	private Contents contents;
+	
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="section_id")
+	private Chapter section;
+	
+	@OneToMany(mappedBy="section")
+	private Set<Chapter> sections = new HashSet<Chapter>();
 
 	public Long getId() {
 		return id;
@@ -89,6 +100,22 @@ public class Chapter implements Serializable {
 
 	public void setContents(Contents contents) {
 		this.contents = contents;
+	}
+
+	public Chapter getSection() {
+		return section;
+	}
+
+	public void setSection(Chapter section) {
+		this.section = section;
+	}
+
+	public Set<Chapter> getSections() {
+		return sections;
+	}
+
+	public void setSections(Set<Chapter> sections) {
+		this.sections = sections;
 	}
 
 	@Override

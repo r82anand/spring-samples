@@ -25,6 +25,8 @@ public class Topic implements Serializable {
 	private Long id;
 	@Column(name = "TITLE")
 	private String title;
+	@Column(name = "DESCRIPTION")
+	private String description;
 	@Column(name = "CREATED_DATE")
 	private Timestamp createdDate;
 	@Column(name = "CREATED_USER")

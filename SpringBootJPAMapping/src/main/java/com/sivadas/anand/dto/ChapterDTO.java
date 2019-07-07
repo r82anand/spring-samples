@@ -1,6 +1,8 @@
 package com.sivadas.anand.dto;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ChapterDTO {
 
@@ -9,6 +11,7 @@ public class ChapterDTO {
 	private Timestamp createdDate;
 	private Long createdBy;
 	private ContentsDTO contents;
+	private Set<ChapterDTO> sections = new HashSet<ChapterDTO>();
 
 	public Long getId() {
 		return id;
@@ -48,6 +51,14 @@ public class ChapterDTO {
 
 	public void setContents(ContentsDTO contents) {
 		this.contents = contents;
+	}
+	
+	public Set<ChapterDTO> getSections() {
+		return sections;
+	}
+
+	public void setSections(Set<ChapterDTO> sections) {
+		this.sections = sections;
 	}
 
 	@Override

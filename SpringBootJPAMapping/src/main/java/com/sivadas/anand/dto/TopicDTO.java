@@ -7,6 +7,7 @@ public class TopicDTO {
 
 	private Long id;
 	private String title;
+	private String description;
 	private Timestamp createdDate;
 	private Long createdBy;
 	private List<ChapterDTO> chapters;
@@ -51,10 +52,18 @@ public class TopicDTO {
 		this.chapters = chapters;
 	}
 
-	@Override
-	public String toString() {
-		return "TopicDTO [id=" + id + ", title=" + title + ", createdDate=" + createdDate + ", createdBy=" + createdBy
-				+ ", chapters=" + chapters + "]";
+	public String getDescription() {
+		return description;
 	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "TopicDTO [id=" + id + ", title=" + title + ", description=" + description + ", createdDate="
+				+ createdDate + ", createdBy=" + createdBy + ", chapters=" + chapters + "]";
+	}
+	
 }
