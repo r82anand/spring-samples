@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.sivadas.anand.dto.ContentsDTO;
@@ -25,6 +26,7 @@ public class ContentsService {
 	@Autowired
 	private ContentsMapper mapper;
 
+	@Cacheable(value = "contentsCache")
 	public List<ContentsDTO> getAllContents() {
 
 		List<Contents> contentsList = new ArrayList<>();
@@ -37,6 +39,7 @@ public class ContentsService {
 		return mapper.contentsListToContenstDTOList(contentsList);
 	}
 
+	@Cacheable(value = "contentsCache", key = "#id")
 	public ContentsDTO getContentById(Long id) {
 
 		ContentsDTO contentsDTO = new ContentsDTO();
@@ -48,6 +51,7 @@ public class ContentsService {
 		return contentsDTO;
 	}
 
+	@Cacheable(value = "contentsCache")
 	public ContentsDTO saveContent(ContentsDTO content) {
 
 		Contents entity = mapper.contentsDTOToContents(content);

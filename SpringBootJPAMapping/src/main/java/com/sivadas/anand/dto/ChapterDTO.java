@@ -1,11 +1,13 @@
 package com.sivadas.anand.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ChapterDTO {
+public class ChapterDTO implements Serializable {
 
+	private static final long serialVersionUID = -3249399197064490080L;
 	private Long id;
 	private String title;
 	private Timestamp createdDate;

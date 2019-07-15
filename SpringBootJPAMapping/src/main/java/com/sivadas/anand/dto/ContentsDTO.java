@@ -1,9 +1,11 @@
 package com.sivadas.anand.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ContentsDTO {
+public class ContentsDTO implements Serializable {
 
+	private static final long serialVersionUID = -489638064313125931L;
 	private Long id;
 	private String content;
 	private Timestamp createdDate;

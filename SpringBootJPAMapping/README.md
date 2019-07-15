@@ -30,6 +30,7 @@ Access the application
 ---------------------
  
 The application will be running at the following URL: <http://localhost:8080/topics/>.
+Swager2 API documentation at the following URL: <http://localhost:8080/swagger-ui.html>
 
 
 

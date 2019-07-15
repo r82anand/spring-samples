@@ -1,10 +1,12 @@
 package com.sivadas.anand.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class TopicDTO {
+public class TopicDTO implements Serializable {
 
+	private static final long serialVersionUID = -1052150838172456580L;
 	private Long id;
 	private String title;
 	private String description;
