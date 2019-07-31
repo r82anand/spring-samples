@@ -1,4 +1,4 @@
-SpringBoot JPA Mapping Example
+SpringBoot JPA Hibernate-Lucene Search Example
 ==============================
 
 What is it?
