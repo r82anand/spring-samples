@@ -23,8 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "Chapter")
 @Table(name = "CHAPTER")
-@NamedQuery(name = "Chapter.findAllChapters",
-query = "SELECT t FROM Chapter t")
+@NamedQuery(name = "Chapter.findAllChapters", query = "SELECT t FROM Chapter t")
 public class Chapter implements Serializable {
 
 	private static final long serialVersionUID = 6438779629485768640L;
@@ -43,23 +42,23 @@ public class Chapter implements Serializable {
 	@JoinColumn(name = "TOPIC_ID")
 	@JsonIgnore
 	private Topic topic;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "content_id")
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "content_id")
 	private Contents contents;
-	
-	@ManyToOne(cascade={CascadeType.ALL})
-	@JoinColumn(name="section_id")
+
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "section_id")
 	private Chapter section;
-	
-	@OneToMany(mappedBy="section")
+
+	@OneToMany(mappedBy = "section")
 	private Set<Chapter> sections = new HashSet<Chapter>();
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -67,7 +66,7 @@ public class Chapter implements Serializable {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -75,7 +74,7 @@ public class Chapter implements Serializable {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Timestamp createdDate) {
+	public void setCreatedDate(final Timestamp createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -83,7 +82,7 @@ public class Chapter implements Serializable {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Long createdBy) {
+	public void setCreatedBy(final Long createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -91,15 +90,15 @@ public class Chapter implements Serializable {
 		return topic;
 	}
 
-	public void setTopic(Topic topic) {
+	public void setTopic(final Topic topic) {
 		this.topic = topic;
 	}
-	
+
 	public Contents getContents() {
 		return contents;
 	}
 
-	public void setContents(Contents contents) {
+	public void setContents(final Contents contents) {
 		this.contents = contents;
 	}
 
@@ -107,7 +106,7 @@ public class Chapter implements Serializable {
 		return section;
 	}
 
-	public void setSection(Chapter section) {
+	public void setSection(final Chapter section) {
 		this.section = section;
 	}
 
@@ -115,7 +114,7 @@ public class Chapter implements Serializable {
 		return sections;
 	}
 
-	public void setSections(Set<Chapter> sections) {
+	public void setSections(final Set<Chapter> sections) {
 		this.sections = sections;
 	}
 
@@ -129,14 +128,14 @@ public class Chapter implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Chapter other = (Chapter) obj;
+		final Chapter other = (Chapter) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -152,7 +151,8 @@ public class Chapter implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Chapter [id=" + id + ", title=" + title + ", createdDate=" + createdDate + ", createdBy=" + createdBy + "]";
+		return "Chapter [id=" + id + ", title=" + title + ", createdDate=" + createdDate + ", createdBy=" + createdBy
+				+ "]";
 	}
 
 }

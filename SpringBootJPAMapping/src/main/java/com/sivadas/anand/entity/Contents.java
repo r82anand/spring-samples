@@ -29,54 +29,60 @@ public class Contents implements Serializable {
 	private Timestamp createdDate;
 	@Column(name = "CREATED_USER")
 	private Long createdBy;
-	
-	@OneToOne(mappedBy = "contents", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
+
+	@OneToOne(mappedBy = "contents", cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
 	private Chapter chapter;
-	
+
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+
+	public void setId(final Long id) {
 		this.id = id;
 	}
+
 	public String getContent() {
 		return content;
 	}
-	public void setContent(String content) {
+
+	public void setContent(final String content) {
 		this.content = content;
 	}
+
 	public Timestamp getCreatedDate() {
 		return createdDate;
 	}
-	public void setCreatedDate(Timestamp createdDate) {
+
+	public void setCreatedDate(final Timestamp createdDate) {
 		this.createdDate = createdDate;
 	}
+
 	public Long getCreatedBy() {
 		return createdBy;
 	}
-	public void setCreatedBy(Long createdBy) {
+
+	public void setCreatedBy(final Long createdBy) {
 		this.createdBy = createdBy;
 	}
-	
+
 	public Chapter getChapter() {
 		return chapter;
 	}
-	public void setChapter(Chapter chapter) {
+
+	public void setChapter(final Chapter chapter) {
 		if (chapter == null) {
-            if (this.chapter != null) {
-                this.chapter.setContents(null);
-            }
-        }
-        else {
-        	chapter.setContents(this);
-        }
-        this.chapter = chapter;
+			if (this.chapter != null) {
+				this.chapter.setContents(null);
+			}
+		} else {
+			chapter.setContents(this);
+		}
+		this.chapter = chapter;
 	}
 
 	@Override
 	public String toString() {
-		return "Contents [id=" + id + ", content="
-				+ content + ", createdDate=" + createdDate + ", createdBy=" + createdBy + "]";
+		return "Contents [id=" + id + ", content=" + content + ", createdDate=" + createdDate + ", createdBy="
+				+ createdBy + "]";
 	}
 }

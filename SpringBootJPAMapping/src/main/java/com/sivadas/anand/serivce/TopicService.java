@@ -2,6 +2,7 @@ package com.sivadas.anand.serivce;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +27,33 @@ public class TopicService {
 
 	public List<TopicDTO> getAllTopics() {
 
-		List<Topic> topics = new ArrayList<>();
-		Iterable<Topic> results = repository.findAll();
+		final List<Topic> topics = new ArrayList<>();
+		final Iterable<Topic> results = repository.findAll();
 		results.forEach(topics::add);
 		topics.forEach(e -> LOGGER.info("Topic = {}", e));
 
 		return mapper.topicListToTopicDTOList(topics);
+	}
+
+	public TopicDTO getTopic(final Long id) {
+
+		TopicDTO dto = new TopicDTO();
+		final Optional<Topic> findById = repository.findById(id);
+		if (findById.isPresent()) {
+			final Topic topic = findById.get();
+			dto = mapper.topicToTopicDTO(topic);
+		}
+
+		return dto;
+	}
+
+	public TopicDTO saveTopic(final TopicDTO topicDTO) {
+
+		final Topic topic = mapper.topicDTOToTopic(topicDTO);
+		final Topic save = repository.save(topic);
+		final TopicDTO result = mapper.topicToTopicDTO(save);
+
+		return result;
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,8 +17,7 @@ import javax.persistence.Table;
 
 @Entity(name = "Topic")
 @Table(name = "TOPIC")
-@NamedQuery(name = "Topic.findAllTopics",
-	    query = "SELECT t FROM Topic t")
+@NamedQuery(name = "Topic.findAllTopics", query = "SELECT t FROM Topic t")
 public class Topic implements Serializable {
 
 	private static final long serialVersionUID = -1326450019307723338L;
@@ -33,14 +33,14 @@ public class Topic implements Serializable {
 	@Column(name = "CREATED_USER")
 	private Long createdBy;
 
-	@OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Chapter> chapters;
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -48,7 +48,7 @@ public class Topic implements Serializable {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -56,7 +56,7 @@ public class Topic implements Serializable {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Timestamp createdDate) {
+	public void setCreatedDate(final Timestamp createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -64,7 +64,7 @@ public class Topic implements Serializable {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Long createdBy) {
+	public void setCreatedBy(final Long createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -72,24 +72,25 @@ public class Topic implements Serializable {
 		return chapters;
 	}
 
-	public void setChapters(List<Chapter> chapters) {
+	public void setChapters(final List<Chapter> chapters) {
 		this.chapters = chapters;
 	}
 
-	public void addChapter(Chapter chapter) {
+	public void addChapter(final Chapter chapter) {
 		chapters.add(chapter);
 		chapter.setTopic(this);
 
 	}
 
-	public void removeChapter(Chapter chapter) {
+	public void removeChapter(final Chapter chapter) {
 		chapters.remove(chapter);
 		chapter.setTopic(null);
 	}
 
 	@Override
 	public String toString() {
-		return "Topic [id=" + id + ", title=" + title + ", createdDate=" + createdDate + ", createdBy=" + createdBy + "]";
+		return "Topic [id=" + id + ", title=" + title + ", createdDate=" + createdDate + ", createdBy=" + createdBy
+				+ "]";
 	}
 
 	@Override
@@ -102,14 +103,14 @@ public class Topic implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Topic other = (Topic) obj;
+		final Topic other = (Topic) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
