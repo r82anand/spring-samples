@@ -1,3 +1,11 @@
+/*
+ * File name		: Book.java
+ * Author			: Anand Sivadas
+ * Version			: 0.1
+ * Created on		: 22-Feb-2020
+ * Reviewed by		:
+ *
+ */
 package com.sivadas.anand.model;
 
 import java.io.Serializable;
@@ -5,6 +13,9 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * The Class Book.
+ */
 @Document(collection = "book")
 public class Book implements Serializable {
 
@@ -14,10 +25,20 @@ public class Book implements Serializable {
 	private String bookName;
 	private String publishingCompany;
 
+	/**
+	 * Instantiates a new book.
+	 */
 	public Book() {
 		super();
 	}
 
+	/**
+	 * Instantiates a new book.
+	 *
+	 * @param serialId the serial id
+	 * @param bookName the book name
+	 * @param publishingCompany the publishing company
+	 */
 	public Book(final Long serialId, final String bookName, final String publishingCompany) {
 		super();
 		this.serialId = serialId;
@@ -25,30 +46,65 @@ public class Book implements Serializable {
 		this.publishingCompany = publishingCompany;
 	}
 
+	/**
+	 * Gets the serial id.
+	 *
+	 * @return the serial id
+	 */
 	public Long getSerialId() {
 		return serialId;
 	}
 
+	/**
+	 * Sets the serial id.
+	 *
+	 * @param serialId the new serial id
+	 */
 	public void setSerialId(final Long serialId) {
 		this.serialId = serialId;
 	}
 
+	/**
+	 * Gets the book name.
+	 *
+	 * @return the book name
+	 */
 	public String getBookName() {
 		return bookName;
 	}
 
+	/**
+	 * Sets the book name.
+	 *
+	 * @param bookName the new book name
+	 */
 	public void setBookName(final String bookName) {
 		this.bookName = bookName;
 	}
 
+	/**
+	 * Gets the publishing company.
+	 *
+	 * @return the publishing company
+	 */
 	public String getPublishingCompany() {
 		return publishingCompany;
 	}
 
+	/**
+	 * Sets the publishing company.
+	 *
+	 * @param publishingCompany the new publishing company
+	 */
 	public void setPublishingCompany(final String publishingCompany) {
 		this.publishingCompany = publishingCompany;
 	}
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -59,6 +115,12 @@ public class Book implements Serializable {
 		return result;
 	}
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -95,6 +157,11 @@ public class Book implements Serializable {
 		return true;
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return "Book [serialId=" + serialId + ", bookName=" + bookName + ", publishingCompany=" + publishingCompany
