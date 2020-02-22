@@ -24,6 +24,7 @@ public class Book implements Serializable {
 	private Long serialId;
 	private String bookName;
 	private String publishingCompany;
+	private Author author;
 
 	/**
 	 * Instantiates a new book.
@@ -38,12 +39,14 @@ public class Book implements Serializable {
 	 * @param serialId the serial id
 	 * @param bookName the book name
 	 * @param publishingCompany the publishing company
+	 * @param author the author
 	 */
-	public Book(final Long serialId, final String bookName, final String publishingCompany) {
+	public Book(final Long serialId, final String bookName, final String publishingCompany, final Author author) {
 		super();
 		this.serialId = serialId;
 		this.bookName = bookName;
 		this.publishingCompany = publishingCompany;
+		this.author = author;
 	}
 
 	/**
@@ -98,6 +101,24 @@ public class Book implements Serializable {
 	 */
 	public void setPublishingCompany(final String publishingCompany) {
 		this.publishingCompany = publishingCompany;
+	}
+
+	/**
+	 * Gets the author.
+	 *
+	 * @return the author
+	 */
+	public Author getAuthor() {
+		return author;
+	}
+
+	/**
+	 * Sets the author.
+	 *
+	 * @param author the new author
+	 */
+	public void setAuthor(final Author author) {
+		this.author = author;
 	}
 
 	/**

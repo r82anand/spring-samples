@@ -21,7 +21,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"serialId\":1000,\n\t\"bookName\":\"Secret Garden\",\n\t\"publishingCompany\": \"1911\"\n}"
+					"raw": "{\n\t\"serialId\":1001,\n\t\"bookName\":\"Head First Java\",\n\t\"publishingCompany\": \"Oreally\",\n\t\"author\" : {\n\t\t\"firstName\":\"Kathy\",\n\t\t\"lastName\":\"Sierra\"\n\t}\n}"
 				},
 				"description": ""
 			},
