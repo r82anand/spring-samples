@@ -1,0 +1,3 @@
+INSERT INTO USERS VALUES (1001, 'Anand', 'Sivadas');
+INSERT INTO USERS VALUES (1002, 'Admin', 'Admin');
+INSERT INTO USERS VALUES (1003, 'Guest', 'Guest');
